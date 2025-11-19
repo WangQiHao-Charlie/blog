@@ -16,7 +16,13 @@ const PostCard = ({ post }: { post: PostPreview }) => {
         navigate(`/post/${post._id}`);
     };
 
-    const hasCover = Boolean(post.coverImage);
+    const hasCover = Boolean(post.cover_image);
+
+    const formatted_date = new Date(post.date).toLocaleDateString("en-us", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    })
 
     return (
         <div className="card w-full bg-base-100 shadow-md rounded-xl overflow-hidden flex flex-col md:flex-row group"
@@ -28,7 +34,7 @@ const PostCard = ({ post }: { post: PostPreview }) => {
                 <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500">
                     <span className={`inline-flex items-center gap-1 ${bg} ${text} px-2 py-1 rounded`}>
                         <Calendar className="w-4 h-4" />
-                        {post.date}
+                        {formatted_date}
                     </span>
 
                     <span className={`inline-flex items-center gap-1 ${bg} ${text} px-2 py-1 rounded`}>
@@ -45,7 +51,7 @@ const PostCard = ({ post }: { post: PostPreview }) => {
                 <p className="text-gray-700 text-sm">{post.excerpt}</p>
 
                 <div className="text-gray-400 text-xs">
-                    {post.wordCount} words &nbsp;|&nbsp; {post.readTime} minutes
+                    {post.word_count} words &nbsp;|&nbsp; {post.read_time} minutes
                 </div>
             </div>
 
@@ -53,7 +59,7 @@ const PostCard = ({ post }: { post: PostPreview }) => {
             {hasCover && (
                 <div className="relative md:w-1/3 w-full overflow-hidden group-hover:cursor-pointer">
                     <img
-                        src={post.coverImage}
+                        src={post.cover_image}
                         alt={post.title}
                         className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 rounded-none md:rounded-r-xl rounded-b-xl"
                         onError={(e) => {

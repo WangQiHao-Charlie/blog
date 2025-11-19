@@ -25,7 +25,8 @@ const CategoryCard = () => {
                                 className="flex justify-between items-center"
                             >
                                 <span>{cat.name}</span>
-                                <span className={`badge badge-sm ${badge}`}>{cat.count}</span>
+                                <span className="w-full" />
+                                <span className={`badge badge-sm ${badge}`}>{cat.post_count}</span>
                             </Link>
                         </li>
                     ))}

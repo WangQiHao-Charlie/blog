@@ -15,19 +15,18 @@ const Navbar = () => {
     const [suggestions, setSuggestions] = useState<PostDetail[]>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
 
-    // 请求搜索建议
     useEffect(() => {
         const handler = setTimeout(() => {
             if (keyword.trim()) {
                 http
-                    .get<PostDetail[]>("/search", { params: { keyword } })
+                    .get<PostDetail[]>(`/search/${keyword}`)
                     .then(setSuggestions);
                 setShowSuggestions(true);
             } else {
                 setSuggestions([]);
                 setShowSuggestions(false);
             }
-        }, 200); // 防抖
+        }, 200);
 
         return () => clearTimeout(handler);
     }, [keyword]);
@@ -70,7 +69,7 @@ const Navbar = () => {
                             value={keyword}
                             onChange={(e) => setKeyword(e.target.value)}
                             onFocus={() => setShowSuggestions(true)}
-                            onBlur={() => setTimeout(() => setShowSuggestions(false), 150)} // 延迟关闭以支持点击
+                            onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
                         />
                     </label>
 

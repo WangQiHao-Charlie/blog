@@ -1,11 +1,11 @@
-import Navbar from "./widgets/NavBar";
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {
 
+
+
   return (
-    <div className="min-h-screen bg-base-100 text-base-content">
-      <Navbar />
+    <div>
       <AppRoutes />
     </div>
   );

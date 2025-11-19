@@ -19,7 +19,7 @@ const TagsCard = () => {
                         <Link
                             key={tag.name}
                             to={`/archive?tag=${encodeURIComponent(tag.name)}`}
-                            className={`badge badge-soft ${tag.colorClass} cursor-pointer`}
+                            className={`badge badge-soft ${tag.color_class} cursor-pointer`}
                         >
                             {tag.name}
                         </Link>

@@ -8,8 +8,8 @@ import TagsCard from "../widgets/cards/TagsCard";
 import Footer from "../widgets/footer/Footer";
 import { useLocation, useParams } from 'react-router-dom';
 import PostListWithPagination from '../widgets/list/PostListWithPagination';
-import AboutMe from './subpages/AboutMe';
-import ArchivePage from './subpages/ArchivePage';
+import AboutMe from './default/AboutMe';
+import ArchivePage from './default/ArchivePage';
 
 function Home() {
     const [user, setUser] = useState<UserProfile | null>(null);
@@ -57,10 +57,10 @@ function Home() {
     }
 
     if (!user) {
-        // 骨架屏展示
+
         return (
             <div className="px-0 sm:px-0 md:px-12 lg:px-16 xl:px-20 py-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6 animate-pulse">
-                {/* 左侧栏骨架 */}
+                {/* Left Skeleton */}
                 <div className="lg:col-span-1 space-y-6">
                     {/* Profile Skeleton */}
                     <div className="card shadow p-4 space-y-4">
@@ -90,7 +90,7 @@ function Home() {
                     </div>
                 </div>
 
-                {/* 主内容区骨架 */}
+                {/* Main Content Skeleton */}
                 <div className="lg:col-span-3 space-y-6">
                     {/* MainCard Skeleton */}
                     <div className="card shadow p-6 space-y-4">
@@ -110,14 +110,14 @@ function Home() {
 
     return (
         <div className="px-2 sm:px-6 md:px-12 lg:px-16 xl:px-20 py-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
-            {/* 左侧栏 */}
+            {/* Left SideBar */}
             <div className="lg:col-span-1 space-y-6 min-w-0 overflow-hidden">
                 <ProfileCard {...user} />
                 <CategoryCard />
                 <TagsCard />
             </div>
 
-            {/* 主内容区 */}
+            {/* Main Content */}
             <div className="lg:col-span-3 min-w-0 overflow-hidden">
                 <MainCard title={title}>
                     {content}

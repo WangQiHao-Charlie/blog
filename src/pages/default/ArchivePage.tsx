@@ -24,10 +24,10 @@ const ArchivePage = () => {
     }, [tag, category]);
 
     const title = tag
-        ? `#${tag} 的归档`
+        ? `#${tag}'s archive`
         : category
-            ? `${category} 分类归档`
-            : "文章归档";
+            ? `${category} archive`
+            : "Article Archive";
 
     return (
         <MainCard title={title}>

@@ -3,7 +3,7 @@ import http from "../utils/HttpClient";
 
 export interface Category {
     name: string;
-    count: number;
+    post_count: number;
     description?: string;
 }
 

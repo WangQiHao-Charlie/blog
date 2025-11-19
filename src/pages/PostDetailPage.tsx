@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github.css";
 
-import { Calendar, User, Clock } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
 import { fetchPostById } from "../services/PostService";
 import { useState, useEffect } from "react";
 
@@ -31,27 +31,23 @@ function PostDetailPage() {
             {/* 元信息 */}
             <div className="text-sm text-gray-500 mb-4 flex flex-wrap gap-4 items-center">
                 <span className="flex items-center gap-1">
-                    <User className="w-4 h-4" />
-                    {post.author}
-                </span>
-                <span className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
                     {post.date}
                 </span>
                 <span className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
-                    {post.readTime} Minutes · {post.wordCount} Words
+                    {post.read_time} Minutes · {post.word_count} Words
                 </span>
             </div>
 
-            {/* 标签 */}
+            {/* 标签
             <div className="mb-6 flex gap-2 flex-wrap">
                 {post.tags.map((tag) => (
                     <span key={tag} className="badge badge-outline">
                         #{tag}
                     </span>
                 ))}
-            </div>
+            </div> */}
 
             {/* 正文 markdown */}
             <div className="prose max-w-none">

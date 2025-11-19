@@ -12,7 +12,6 @@ class HttpClient {
       },
     });
 
-    // 请求拦截器
     this.instance.interceptors.request.use((config) => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -21,9 +20,8 @@ class HttpClient {
       return config;
     });
 
-    // 响应拦截器
     this.instance.interceptors.response.use((response) => response, (error) => {
-      console.error('请求错误：', error.response?.data || error.message);
+      console.error('Request Error:', error.response?.data || error.message);
       return Promise.reject(error);
     });
   }
@@ -53,9 +51,8 @@ class HttpClient {
   }
 }
 
-// 根据环境设置 baseURL
 const BASE_URL =
-    import.meta.env.VITE_API_BASE || 'https://blog.charlie-cloud.me/api';
+    import.meta.env.VITE_API_BASE || 'https://blog-api.charlie-cloud.me/api';
 
 const http = new HttpClient(BASE_URL);
 export default http;
