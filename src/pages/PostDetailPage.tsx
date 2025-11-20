@@ -3,7 +3,7 @@ import type { PostDetail } from "../types/Post";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-import "highlight.js/styles/github.css";
+import "github-markdown-css/github-markdown-light.css";
 
 import { Calendar, Clock } from "lucide-react";
 import { fetchPostById } from "../services/PostService";
@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 function PostDetailPage() {
     const { id } = useParams<{ id: string }>();
     const [post, setPost] = useState<PostDetail | null>(null);
+
 
     useEffect(() => {
         if (id) {
@@ -23,16 +24,22 @@ function PostDetailPage() {
         return <div className="p-8 text-error">No Such Article</div>;
     }
 
+    const formatted_date = new Date(post.date).toLocaleDateString("en-us", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+
     return (
         <div className="p-6 max-w-4xl mx-auto">
-            {/* 标题 */}
+            {/* Title */}
             <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
 
-            {/* 元信息 */}
+            {/* Meta */}
             <div className="text-sm text-gray-500 mb-4 flex flex-wrap gap-4 items-center">
                 <span className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
-                    {post.date}
+                    {formatted_date}
                 </span>
                 <span className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
@@ -40,23 +47,15 @@ function PostDetailPage() {
                 </span>
             </div>
 
-            {/* 标签
-            <div className="mb-6 flex gap-2 flex-wrap">
-                {post.tags.map((tag) => (
-                    <span key={tag} className="badge badge-outline">
-                        #{tag}
-                    </span>
-                ))}
-            </div> */}
-
-            {/* 正文 markdown */}
-            <div className="prose max-w-none">
+            {/* Content markdown */}
+            <section className="markdown-body mt-6">
                 <ReactMarkdown
-                    children={post.content}
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeHighlight]}
-                />
-            </div>
+                >
+                    {post.content}
+                </ReactMarkdown>
+            </section>
         </div>
     );
 }
